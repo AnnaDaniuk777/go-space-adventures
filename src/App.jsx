@@ -1,3 +1,4 @@
+import './App.scss';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import Offers from './components/Offers/Offers';
@@ -5,7 +6,6 @@ import Journey from './components/Journey/Journey';
 import Footer from './components/Footer/Footer';
 import Overlay from './components/Overlay/Overlay';
 import { useMenu } from './hooks/useMenu';
-import './App.scss';
 
 function App() {
   const { menuState, toggleMenu, closeMenu, handleMenuAnimationEnd } = useMenu();

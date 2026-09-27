@@ -1,5 +1,8 @@
 import logo from '../../img/logo.svg';
 import { classNames } from '../../utils/class-names';
+import './Header.scss';
+
+const BLOCK_NAME = 'header';
 
 const NAV_LINKS = [
   { label: 'Home', href: '#', isCurrent: true },
@@ -12,37 +15,37 @@ function Header({ menuState, onBurgerClick, onLinkClick, onMenuAnimationEnd }) {
   return (
     <header
       className={classNames(
-        'header',
-        isOpened && 'header--menu-opened',
-        menuState === 'closing' && 'header--menu-closing',
+        BLOCK_NAME,
+        isOpened && `${BLOCK_NAME}--menu-opened`,
+        menuState === 'closing' && `${BLOCK_NAME}--menu-closing`,
       )}
     >
-      <div className="header__container container">
-        <a className="header__logo" href="#" aria-label="GO, home page">
-          <img className="header__logo-img" src={logo} width="71" height="24" alt="GO space adventures logo" />
+      <div className={`${BLOCK_NAME}__container container`}>
+        <a className={`${BLOCK_NAME}__logo`} href="#" aria-label="GO, home page">
+          <img className={`${BLOCK_NAME}__logo-img`} src={logo} width="71" height="24" alt="GO space adventures logo" />
         </a>
         <button
-          className="header__burger"
+          className={`${BLOCK_NAME}__burger`}
           type="button"
           aria-label={isOpened ? 'Close menu' : 'Open menu'}
           aria-expanded={isOpened}
           aria-controls="header-nav"
           onClick={onBurgerClick}
         >
-          <span className="header__burger-icon" />
+          <span className={`${BLOCK_NAME}__burger-icon`} />
         </button>
-        <nav className="header__nav" id="header-nav" aria-label="Main navigation" onAnimationEnd={onMenuAnimationEnd}>
-          <ul className="header__list">
+        <nav className={`${BLOCK_NAME}__nav`} id="header-nav" aria-label="Main navigation" onAnimationEnd={onMenuAnimationEnd}>
+          <ul className={`${BLOCK_NAME}__list`}>
             {NAV_LINKS.map(({ label, href, isCurrent }) => (
-              <li className="header__item" key={label}>
-                <a className="header__link" href={href} aria-current={isCurrent ? 'page' : undefined} onClick={onLinkClick}>
+              <li className={`${BLOCK_NAME}__item`} key={label}>
+                <a className={`${BLOCK_NAME}__link`} href={href} aria-current={isCurrent ? 'page' : undefined} onClick={onLinkClick}>
                   {label}
                 </a>
               </li>
             ))}
-            <li className="header__item">
-              <a className="header__link header__cart" href="#" onClick={onLinkClick}>
-                <span className="header__cart-text">Cart</span>
+            <li className={`${BLOCK_NAME}__item`}>
+              <a className={`${BLOCK_NAME}__link ${BLOCK_NAME}__cart`} href="#" onClick={onLinkClick}>
+                <span className={`${BLOCK_NAME}__cart-text`}>Cart</span>
               </a>
             </li>
           </ul>

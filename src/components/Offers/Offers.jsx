@@ -1,15 +1,18 @@
 import Card from '../Card/Card';
 import { offers } from '../../data/offers';
 import { classNames } from '../../utils/class-names';
+import './Offers.scss';
+
+const BLOCK_NAME = 'offers';
 
 function Offers() {
   return (
-    <section className="offers" id="offers">
-      <div className="offers__container container">
-        <h2 className="offers__title">Offers</h2>
-        <ul className="offers__list">
+    <section className={BLOCK_NAME} id="offers">
+      <div className={`${BLOCK_NAME}__container container`}>
+        <h2 className={`${BLOCK_NAME}__title`}>Offers</h2>
+        <ul className={`${BLOCK_NAME}__list`}>
           {offers.map((offer) => (
-            <li className={classNames('offers__item', offer.isWide && 'offers__item--wide')} key={offer.id}>
+            <li className={classNames(`${BLOCK_NAME}__item`, offer.isWide && `${BLOCK_NAME}__item--wide`)} key={offer.id}>
               <Card {...offer} />
             </li>
           ))}

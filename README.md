@@ -34,7 +34,7 @@ npm run dev
 - SCSS (Sass), методология БЭМ
 - sharp и vite-plugin-image-optimizer для оптимизации картинок
 
-Проект создан на Vite, а не через `create-react-app`: CRA больше не поддерживается, и команда React сейчас рекомендует Vite. Вёрстка разбита на компоненты, корневой компонент `src/App.jsx`, стили подключаются через `src/App.scss`.
+Проект создан на Vite, а не через `create-react-app`: CRA больше не поддерживается, и команда React сейчас рекомендует Vite. Вёрстка разбита на компоненты, корневой компонент `src/App.jsx`. Стили каждого компонента лежат рядом с ним и подключаются в самом компоненте, а общие стили и блоки подключаются через `src/App.scss`.
 
 ## Что сделано
 
@@ -52,13 +52,13 @@ npm run dev
 ```text
 src/
   App.jsx          корневой компонент
-  App.scss         подключение стилей
+  App.scss         подключение общих стилей
   main.jsx         точка входа
-  components/      Header, Hero, Offers, Card, Journey, Footer, Overlay
+  components/      Header, Hero, Offers, Card, Journey, Footer, Overlay и их стили
   data/offers.js   данные карточек
   hooks/useMenu.js логика мобильного меню
   sass/common/     переменные, миксины, шрифты, общие стили
-  sass/blocks/     стили БЭМ-блоков
+  sass/blocks/     общие БЭМ-блоки: button, container, page-body, visually-hidden
   img/             картинки
   fonts/           шрифт Lato
 static/            статическая версия до переноса в React

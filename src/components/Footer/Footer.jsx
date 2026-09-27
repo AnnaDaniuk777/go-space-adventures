@@ -1,8 +1,12 @@
+import './Footer.scss';
+
+const BLOCK_NAME = 'footer';
+
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer__container container">
-        <p className="footer__text">Exciting space adventure!</p>
+    <footer className={BLOCK_NAME}>
+      <div className={`${BLOCK_NAME}__container container`}>
+        <p className={`${BLOCK_NAME}__text`}>Exciting space adventure!</p>
       </div>
     </footer>
   );

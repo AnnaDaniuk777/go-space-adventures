@@ -2,6 +2,8 @@
 
 Тестовое задание на позицию Frontend Developer: одностраничное SPA-приложение, свёрстанное по макету из Figma.
 
+Демо: [annadaniuk777.github.io/go-space-adventures](https://annadaniuk777.github.io/go-space-adventures/)
+
 Макет: [Figma](https://www.figma.com/design/t1LDcmSJayK5HeqO5f96gM/TEST--Copy-)
 
 ## Версии
@@ -60,11 +62,16 @@ src/
   img/             картинки
   fonts/           шрифт Lato
 static/            статическая версия до переноса в React
+.github/workflows/ деплой на GitHub Pages
 ```
 
 ## Статическая версия
 
 Сначала я сверстала страницу обычным HTML, SCSS и JavaScript, сверила её с макетом и только потом перенесла в React-компоненты. Эта версия лежит в папке `static/` и использует те же стили. Посмотреть её можно после `npm run dev` по адресу `http://localhost:3000/static/`.
+
+## Деплой
+
+Сайт публикуется на GitHub Pages через GitHub Actions. При каждом пуше в `main` workflow `.github/workflows/deploy.yml` устанавливает зависимости, собирает проект и выкладывает папку `dist`.
 
 ## Время
 

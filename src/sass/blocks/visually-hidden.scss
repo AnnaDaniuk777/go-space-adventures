@@ -1,0 +1,5 @@
+@use "../common" as *;
+
+.visually-hidden {
+  @include visually-hidden;
+}

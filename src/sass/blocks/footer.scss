@@ -1,0 +1,56 @@
+@use "../common" as *;
+
+.footer {
+  background-color: $black;
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 21px;
+  text-align: center;
+
+  @media (min-width: $tablet-width) {
+    padding-bottom: 28px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding-bottom: 20px;
+  }
+
+  &::before {
+    @include pseudo($pos: static);
+
+    width: 93px;
+    height: 80px;
+    background-image: retina-image("rocket", "png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    filter: $rocket-shadow;
+    animation: footer-rocket 3s ease-in-out infinite alternate;
+  }
+}
+
+.footer__text {
+  max-width: 100%;
+  margin-top: 5px;
+  font-size: 18px;
+  color: $light-green;
+}
+
+@keyframes footer-rocket {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer__container::before {
+    animation: none;
+  }
+}

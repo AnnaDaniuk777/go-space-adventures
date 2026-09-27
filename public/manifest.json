@@ -1,0 +1,11 @@
+{
+  "name": "GO: space adventures",
+  "short_name": "GO",
+  "icons": [
+    {
+      "src": "img/favicon/favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}

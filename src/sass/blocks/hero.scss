@@ -1,0 +1,243 @@
+@use "sass:math";
+@use "../common" as *;
+
+$orbit-size: 290px;
+$orbit-left: 72px;
+$planet-yellow-size: 40px;
+$illustration-width: 492px;
+$illustration-scale: 0.9155;
+$illustration-top-mobile: -114px;
+$illustration-center-offset: 230px;
+$illustration-top-tablet: 28px;
+$illustration-top-desktop: 62px;
+$illustration-right-tablet: -199px;
+$illustration-right-desktop: -2px;
+$orbit-color: #f8f8f8;
+$planet-yellow: #ffc204;
+$planet-orange: #e77e42;
+$space-image: retina-image("hero-background-space");
+$shade-mobile: linear-gradient(180deg, rgba($shade-color, 0) 0%, rgba($shade-color, $shade-opacity) 100%);
+$shade-tablet: linear-gradient(90deg, rgba($shade-color, $shade-opacity) 0%, rgba($shade-color, 0) 100%);
+$text-gap: 20px;
+$illustration-reach: $orbit-left - math.div($planet-yellow-size, 2);
+$text-offset-tablet: $illustration-width - $illustration-reach * $illustration-scale + $text-gap;
+$text-offset: $illustration-width - $illustration-reach + $text-gap;
+
+@function fluid($from, $to) {
+  $slope: math.div($to - $from, $desktop-width - $tablet-width);
+
+  @return calc(#{$from} + (100vw - #{$tablet-width}) * #{$slope});
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: $white;
+  background-color: $dark-blue;
+  background-image: $shade-mobile, $space-image;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  @media (min-width: $tablet-width) {
+    background-image: $shade-tablet, $space-image;
+  }
+}
+
+.hero__container {
+  position: relative;
+  min-height: 451px;
+  padding-top: 253px;
+  padding-bottom: 43px;
+  text-align: center;
+
+  @media (min-width: $tablet-width) {
+    min-height: 420px;
+    padding-top: 105px;
+    padding-bottom: 99px;
+    padding-right: fluid($illustration-right-tablet + $text-offset-tablet, $illustration-right-desktop + $text-offset-tablet);
+    text-align: left;
+  }
+
+  @media (min-width: $desktop-width) {
+    min-height: 490px;
+    padding-top: 98px;
+    padding-bottom: 119px;
+    padding-right: $illustration-right-desktop + $text-offset;
+  }
+}
+
+.hero__title {
+  text-wrap: balance;
+  font-weight: 800;
+  font-size: 36px;
+  line-height: 36px;
+  margin-bottom: 16px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 48px;
+    line-height: 48px;
+    margin-bottom: 19px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 72px;
+    line-height: 72px;
+    margin-bottom: 17px;
+  }
+}
+
+.hero__accent {
+  &--pink {
+    color: $pink;
+  }
+
+  &--light-green {
+    color: $light-green;
+  }
+}
+
+.hero__subtitle {
+  font-weight: 800;
+  margin-bottom: 15px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 22px;
+    margin-bottom: 21px;
+  }
+
+  @media (min-width: $desktop-width) {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+}
+
+.hero__button {
+  min-width: 161px;
+  min-height: 33px;
+
+  @media (min-width: $tablet-width) {
+    font-size: 22px;
+    min-width: 191px;
+    min-height: 54px;
+  }
+}
+
+.hero__title,
+.hero__subtitle,
+.hero__button {
+  position: relative;
+  z-index: 1;
+}
+
+.hero__illustration {
+  position: absolute;
+  top: $illustration-top-mobile;
+  left: calc(50% - #{$illustration-center-offset});
+  width: $illustration-width;
+  height: 365px;
+  isolation: isolate;
+  transform: scale($illustration-scale);
+  transform-origin: top left;
+
+  &::before,
+  &::after {
+    @include pseudo;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  &::before {
+    top: 0;
+    left: 106px;
+    width: 326px;
+    height: 367px;
+    background-image: retina-image("hero-earth", "png");
+
+    @media (min-width: $desktop-width) {
+      top: -3px;
+    }
+  }
+
+  &::after {
+    top: 224px;
+    left: 153px;
+    width: 163px;
+    height: 141px;
+    background-image: retina-image("rocket", "png");
+    filter: $rocket-shadow;
+    animation: hero-rocket 3s ease-in-out infinite alternate;
+  }
+
+  @media (min-width: $tablet-width) {
+    top: fluid($illustration-top-tablet, $illustration-top-desktop);
+    right: fluid($illustration-right-tablet, $illustration-right-desktop);
+    left: auto;
+  }
+
+  @media (min-width: $desktop-width) {
+    top: $illustration-top-desktop;
+    right: $illustration-right-desktop;
+    transform: none;
+  }
+}
+
+.hero__orbit {
+  position: absolute;
+  z-index: -1;
+  top: 15px;
+  left: $orbit-left;
+  width: $orbit-size;
+  height: $orbit-size;
+  border: 1px solid $orbit-color;
+  border-radius: 50%;
+  animation: hero-orbit 20s linear infinite;
+
+  &::before,
+  &::after {
+    @include pseudo;
+
+    border-radius: 50%;
+  }
+
+  &::before {
+    top: 47px;
+    left: 6px;
+    width: $planet-yellow-size;
+    height: $planet-yellow-size;
+    background-image: linear-gradient(90deg, $planet-yellow 38%, rgba(255, 194, 4, 0.44) 100%);
+  }
+
+  &::after {
+    top: 190px;
+    left: 0;
+    width: 18px;
+    height: 18px;
+    background-color: $planet-orange;
+    box-shadow: 68px 74px 0 -4px $white;
+  }
+}
+
+@keyframes hero-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-rocket {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-10px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__orbit,
+  .hero__illustration::after {
+    animation: none;
+  }
+}

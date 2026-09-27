@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GO: space adventures. Discover the vast expanses of space, where the possibilities are endless.">
+  <title>GO: space adventures</title>
+  <link rel="preload" href="../src/fonts/Lato-Bold.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+  <link rel="preload" href="../src/fonts/Lato-ExtraBold.woff2" type="font/woff2" as="font" crossorigin="anonymous">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="stylesheet" href="../src/App.scss">
+</head>
+
+<body class="page-body">
+  <header class="header">
+    <div class="header__container container">
+      <a class="header__logo" href="#" aria-label="GO, home page">
+        <img class="header__logo-img" src="../src/img/logo.svg" width="71" height="24" alt="GO space adventures logo">
+      </a>
+      <button class="header__burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="header-nav">
+        <span class="header__burger-icon"></span>
+      </button>
+      <nav class="header__nav" id="header-nav" aria-label="Main navigation">
+        <ul class="header__list">
+          <li class="header__item">
+            <a class="header__link" href="#" aria-current="page">Home</a>
+          </li>
+          <li class="header__item">
+            <a class="header__link" href="#offers">Products</a>
+          </li>
+          <li class="header__item">
+            <a class="header__link header__cart" href="#">
+              <span class="header__cart-text">Cart</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero__container container">
+        <h1 class="hero__title">Discover the vast expanses of <span class="hero__accent hero__accent--pink">space</span></h1>
+        <p class="hero__subtitle">Where the possibilities are <span class="hero__accent hero__accent--light-green">endless!</span></p>
+        <a class="hero__button button button--filled" href="#">Learn more</a>
+        <div class="hero__illustration" aria-hidden="true">
+          <div class="hero__orbit"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offers" id="offers">
+      <div class="offers__container container">
+        <h2 class="offers__title">Offers</h2>
+        <ul class="offers__list">
+          <li class="offers__item offers__item--wide">
+            <article class="card card--wide card--reality">
+              <h3 class="card__title">Move the borders of&nbsp;reality!</h3>
+              <p class="card__text">Go on a space adventure - it's possible with us!</p>
+              <a class="card__button button button--outline" href="#">Learn more</a>
+            </article>
+          </li>
+          <li class="offers__item">
+            <article class="card card--planets">
+              <h3 class="card__title">Space is not just stars and planets</h3>
+              <p class="card__text">Go on a space adventure</p>
+              <a class="card__button button button--outline" href="#">Learn more</a>
+            </article>
+          </li>
+          <li class="offers__item">
+            <article class="card card--stars">
+              <h3 class="card__title">For those who dream of stars</h3>
+              <p class="card__text">Our offer: make your dream come true</p>
+              <a class="card__button button button--outline" href="#">Learn more</a>
+            </article>
+          </li>
+          <li class="offers__item offers__item--wide">
+            <article class="card card--wide card--dreams">
+              <h3 class="card__title">Fulfill your fantastic dreams</h3>
+              <p class="card__text">Space has never been so close</p>
+              <a class="card__button button button--outline" href="#">Learn more</a>
+            </article>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="journey">
+      <div class="journey__container container">
+        <h2 class="journey__title">Embark on a space journey</h2>
+        <input class="journey__toggle visually-hidden" type="checkbox" id="journey-toggle">
+        <p class="journey__text">Travelling into space is one of the most exciting and unforgettable adventures that can change your life forever. And if you have ever dreamed of exploring stars, planets and galaxies, then our company is ready to help you realize this dream. We offer a unique experience that will allow you to go on a space journey and see all the secrets of the universe. We guarantee that every moment in space will be filled with incredible impressions, excitement and new discoveries. Our team of professionals takes care of your safety and comfort so that you can fully enjoy your adventure in space. We offer various options for space excursions.</p>
+        <div class="journey__more">
+          <div class="journey__more-inner">
+            <p class="journey__text journey__more-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </div>
+        <label class="journey__button" for="journey-toggle">
+          <span class="journey__button-text journey__button-text--more">Read more</span>
+          <span class="journey__button-text journey__button-text--less">Read less</span>
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container container">
+      <p class="footer__text">Exciting space adventure!</p>
+    </div>
+  </footer>
+  <div class="overlay"></div>
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

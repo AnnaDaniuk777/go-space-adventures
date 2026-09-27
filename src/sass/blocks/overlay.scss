@@ -1,0 +1,48 @@
+@use "../common" as *;
+
+$overlay-duration: 0.4s;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: none;
+  background-color: rgba($black, 0.6);
+  cursor: pointer;
+}
+
+.overlay--visible {
+  display: block;
+  animation: overlay-fade-in $overlay-duration ease;
+}
+
+.overlay--closing {
+  display: block;
+  animation: overlay-fade-out $overlay-duration ease forwards;
+}
+
+@keyframes overlay-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes overlay-fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay--visible {
+    animation: none;
+  }
+}

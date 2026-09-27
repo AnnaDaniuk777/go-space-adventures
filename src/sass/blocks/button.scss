@@ -1,0 +1,64 @@
+@use "../common" as *;
+
+$state-duration: 0.3s;
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+  padding: 4px 16px;
+  border: 2px solid $light-green;
+  border-radius: 100px;
+  font: inherit;
+  text-align: center;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color $state-duration ease,
+    background-color $state-duration ease,
+    border-color $state-duration ease;
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.button--filled {
+  color: $black;
+  background-color: $light-green;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: $olive;
+      background-color: $olive;
+    }
+  }
+
+  &:focus-visible {
+    border-color: $olive;
+    background-color: $olive;
+  }
+}
+
+.button--outline {
+  color: $light-green;
+  background-color: transparent;
+
+  @media (hover: hover) {
+    &:hover {
+      border-color: $olive;
+      color: $olive;
+    }
+  }
+
+  &:focus-visible {
+    border-color: $olive;
+    color: $olive;
+  }
+}

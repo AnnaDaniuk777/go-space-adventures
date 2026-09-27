@@ -1,0 +1,379 @@
+@use "sass:math";
+@use "../common" as *;
+
+$burger-width: 24px;
+$burger-line: 2px;
+$burger-gap: 8px;
+$burger-step: 0.2s;
+$burger-size: 40px;
+$header-height: 48px;
+$header-height-tablet: 80px;
+$menu-duration: 0.4s;
+$menu-height: 240px;
+$link-padding: 10px;
+$cart-width: 24px;
+$cart-height: 21px;
+$state-duration: 0.3s;
+$focus-radius: 4px;
+$link-gradient: linear-gradient(90deg, $light-green, $pink);
+
+@mixin cart-icon {
+  width: $cart-width;
+  height: $cart-height;
+  mask-image: url("../../img/cart.svg");
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+.header {
+  position: relative;
+  z-index: 10;
+  overflow-x: clip;
+  background-color: $black;
+  color: $white;
+}
+
+.header__container {
+  @include flex-between;
+
+  min-height: $header-height;
+
+  @media (min-width: $tablet-width) {
+    min-height: $header-height-tablet;
+  }
+}
+
+.header__logo {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  border-radius: $focus-radius;
+
+  &::after {
+    @include pseudo;
+
+    inset: 0;
+    background-image: $link-gradient;
+    mask-image: url("../../img/logo.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+    opacity: 0;
+    transition: opacity $state-duration ease;
+  }
+
+  @media (hover: hover) {
+    &:hover .header__logo-img {
+      opacity: 0;
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &:focus-visible .header__logo-img {
+    opacity: 0;
+  }
+
+  &:focus-visible::after {
+    opacity: 1;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.header__logo-img {
+  width: 71px;
+  height: 25px;
+  transition: opacity $state-duration ease;
+
+  @media (min-width: $desktop-width) {
+    width: 105px;
+    height: 37px;
+  }
+}
+
+.header__burger {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: $burger-size;
+  height: $burger-size;
+  margin-right: math.div($burger-width - $burger-size, 2) + 2px;
+  padding: 0;
+  border: 0;
+  border-radius: $focus-radius;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+
+  @media (hover: hover) {
+    &:hover .header__burger-icon,
+    &:hover .header__burger-icon::before,
+    &:hover .header__burger-icon::after {
+      background-image: $link-gradient;
+    }
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+
+    outline-offset: 0;
+  }
+
+  &:focus-visible .header__burger-icon,
+  &:focus-visible .header__burger-icon::before,
+  &:focus-visible .header__burger-icon::after {
+    background-image: $link-gradient;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+
+  @media (min-width: $tablet-width) {
+    display: none;
+  }
+}
+
+.header__burger-icon,
+.header__burger-icon::before,
+.header__burger-icon::after {
+  position: absolute;
+  width: $burger-width;
+  height: $burger-line;
+  border-radius: $burger-line;
+  background-color: currentColor;
+}
+
+.header__burger-icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition:
+    background-color 0s $burger-step,
+    background-size 0s $burger-step;
+
+  &::before,
+  &::after {
+    content: "";
+    left: 0;
+    transition:
+      transform $burger-step ease,
+      top $burger-step ease $burger-step;
+  }
+
+  &::before {
+    top: -$burger-gap;
+  }
+
+  &::after {
+    top: $burger-gap;
+  }
+}
+
+.header--menu-opened .header__burger-icon {
+  background-color: transparent;
+  background-size: 0 0;
+
+  &::before,
+  &::after {
+    top: 0;
+    transition:
+      top $burger-step ease,
+      transform $burger-step ease $burger-step;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+.header__nav {
+  display: none;
+  position: absolute;
+  top: calc(100% - 1px);
+  right: 0;
+  width: 100%;
+  height: $menu-height;
+  max-height: calc(100dvh - $header-height);
+  padding: 22px 10px;
+  overflow-y: auto;
+  background-color: $black;
+
+  @media (min-width: $tablet-width) {
+    display: block;
+    position: static;
+    width: auto;
+    height: auto;
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+    background-color: transparent;
+  }
+}
+
+.header--menu-opened .header__nav {
+  display: block;
+  animation: menu-slide-in $menu-duration ease;
+}
+
+.header--menu-closing .header__nav {
+  display: block;
+  animation: menu-slide-out $menu-duration ease forwards;
+}
+
+@keyframes menu-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes menu-slide-out {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.header__list {
+  @include reset;
+
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: $tablet-width) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0 40px;
+    margin-right: 9px;
+  }
+
+  @media (min-width: $desktop-width) {
+    column-gap: 36px;
+    margin-right: 0;
+  }
+}
+
+.header__link {
+  display: block;
+  width: fit-content;
+  padding: $link-padding;
+  border-radius: $focus-radius;
+  color: inherit;
+  font-size: 18px;
+  text-decoration: none;
+  background-image: $link-gradient;
+  background-origin: content-box;
+  background-clip: text;
+  transition: color $state-duration ease;
+
+  @media (hover: hover) {
+    &:hover {
+      color: transparent;
+    }
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+
+    color: transparent;
+  }
+
+  &:active {
+    opacity: 0.7;
+  }
+}
+
+.header__cart {
+  @media (min-width: $tablet-width) {
+    position: relative;
+    margin-left: -14px;
+    padding: $link-padding;
+    background-image: none;
+
+    &::before,
+    &::after {
+      @include pseudo;
+      @include cart-icon;
+
+      inset: 0;
+      margin: auto;
+      transition: opacity $state-duration ease;
+    }
+
+    &::before {
+      position: static;
+      background-color: $white;
+    }
+
+    &::after {
+      background-image: linear-gradient(180deg, $olive, $pink);
+      opacity: 0;
+    }
+
+    @media (hover: hover) {
+      &:hover::before {
+        opacity: 0;
+      }
+
+      &:hover::after {
+        opacity: 1;
+      }
+    }
+
+    &:focus-visible::before {
+      opacity: 0;
+    }
+
+    &:focus-visible::after {
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-left: 4px;
+  }
+}
+
+.header__cart-text {
+  @media (min-width: $tablet-width) {
+    @include visually-hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__burger-icon,
+  .header__burger-icon::before,
+  .header__burger-icon::after,
+  .header--menu-opened .header__burger-icon::before,
+  .header--menu-opened .header__burger-icon::after {
+    transition-duration: 0s;
+    transition-delay: 0s;
+  }
+
+  .header--menu-opened .header__nav {
+    animation: none;
+  }
+}

@@ -1,0 +1,4 @@
+@use "mixins" as *;
+
+@include font-face-multi("Lato", 700, normal, url("../../fonts/Lato-Bold.woff2") format("woff2"));
+@include font-face-multi("Lato", 800, normal, url("../../fonts/Lato-ExtraBold.woff2") format("woff2"));

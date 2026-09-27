@@ -1,0 +1,50 @@
+@use "../common" as *;
+
+.offers {
+  padding: 53px 0 53px;
+
+  @media (min-width: $tablet-width) {
+    padding: 59px 0 58px;
+  }
+
+  @media (min-width: $desktop-width) {
+    padding: 60px 0 71px;
+  }
+}
+
+.offers__title {
+  margin-bottom: 28px;
+  font-size: 18px;
+
+  @media (min-width: $tablet-width) {
+    margin-bottom: 26px;
+    font-size: 24px;
+  }
+
+  @media (min-width: $desktop-width) {
+    margin-bottom: 38px;
+    font-size: 32px;
+  }
+}
+
+.offers__list {
+  @include reset;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+
+  @media (min-width: $tablet-width) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: $desktop-width) {
+    gap: 40px;
+  }
+}
+
+.offers__item--wide {
+  @media (min-width: $desktop-width) {
+    grid-column: span 2;
+  }
+}

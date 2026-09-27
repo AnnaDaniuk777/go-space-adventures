@@ -44,6 +44,7 @@ export function initMenu() {
     if (!window.matchMedia(REDUCED_MOTION_QUERY).matches) {
       header.classList.add('header--menu-closing');
       overlay.classList.add('overlay--closing');
+      body.classList.add('page-body--no-scroll');
     }
   }
 
@@ -57,8 +58,7 @@ export function initMenu() {
 
   function handleNavAnimationEnd(evt) {
     if (evt.animationName === 'menu-slide-out') {
-      header.classList.remove('header--menu-closing');
-      overlay.classList.remove('overlay--closing');
+      hideMenu();
     }
   }
 

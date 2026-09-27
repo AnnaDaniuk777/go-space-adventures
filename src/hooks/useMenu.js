@@ -40,8 +40,8 @@ export function useMenu() {
   }
 
   useEffect(() => {
-    document.body.classList.toggle('page-body--no-scroll', isOpened);
-  }, [isOpened]);
+    document.body.classList.toggle('page-body--no-scroll', menuState !== 'closed');
+  }, [menuState]);
 
   useEffect(() => {
     function handleEscapeKey(evt) {
